@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchBoxComponent } from './search-box/search-box.component';
-
-
 
 @NgModule({
-  declarations: [SearchBoxComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [SearchBoxComponent]
+  declarations: [],
+  imports: [CommonModule],
+  exports: [],
 })
-export class SharedModule { }
+export class SharedModule {}
