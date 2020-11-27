@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-box',
@@ -7,8 +8,19 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBoxComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  navigateToDetailsList(searchTerm: string) {
+    this.router
+      .navigateByUrl('/', {
+        skipLocationChange: true,
+      })
+      .then(() =>
+        this.router.navigate(['/items'], {
+          queryParams: { search: searchTerm },
+        })
+      );
+  }
 }
- 

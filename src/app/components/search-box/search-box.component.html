@@ -1,5 +1,11 @@
 <div class="search-box">
-  <img src="../../../assets/ml-logo.png" class="meli-logo">
-  <input type="text" placeholder="Nunca dejes de buscar" class="search-input" />
-  <button class="search-btn"><i class="fa fa-search"></i></button>
+  <img src="../../../assets/ml-logo.png" class="meli-logo" />
+  <input
+    #searchInput
+    type="text"
+    placeholder="Nunca dejes de buscar"
+    class="search-input"
+    (keyup.enter)="navigateToDetailsList(searchInput.value)"
+  />
+  <button class="search-btn"><i class="fa fa-search" (click)="navigateToDetailsList(searchInput.value)"></i></button>
 </div>
