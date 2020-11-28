@@ -9,6 +9,12 @@ import { Author, Item, Price, SearchResult } from '../core/models/search';
 export class MeliService {
   constructor() {}
 
+  /**
+   * This will split the price into amount and decimals and return a Price object
+   * It will also take care of the internacionalization of the currency and format
+   * @param price
+   * @param currency
+   */
   getPrice(price: string, currency: string): Price {
     let amount = 0;
     let decimals = 0;
@@ -36,6 +42,10 @@ export class MeliService {
     };
   }
 
+  /**
+   * Map the api search result into a object that we use in our view
+   * @param meliSearchResult
+   */
   mapApiSearchResultToItems(meliSearchResult: SearchMeliApi): SearchResult {
     const author: Author = {
       name: 'Jerónimo',
@@ -62,6 +72,10 @@ export class MeliService {
     };
   }
 
+  /**
+   * Get the search list based on a search key
+   * @param query term to search
+   */
   async getSearch(query: string = ''): Promise<SearchResult> {
     const res = await http<SearchMeliApi>(
       `https://api.mercadolibre.com/sites/MLA/search?q=${query}#json`
