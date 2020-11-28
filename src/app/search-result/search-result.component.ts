@@ -23,11 +23,9 @@ export class SearchResultComponent implements OnInit {
     this.doSearch();
   }
 
-  async doSearch() {
-    this.searchResult = await this.meliService.getSearch(this.searchParams);
-    this.meliService.getTest().subscribe((res) => {
-      console.log(res);
+  doSearch() {
+    this.meliService.getSearch(this.searchParams).subscribe((res) => {
+      this.searchResult = res;
     });
-    console.log(this.searchResult);
   }
 }
