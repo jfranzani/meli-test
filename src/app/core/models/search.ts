@@ -11,6 +11,7 @@ export interface Item {
   picture: string;
   condition: string;
   free_shipping: boolean;
+  state_name: string;
   sold_quantity?: number;
   description?: string;
 }
@@ -21,6 +22,7 @@ export interface ItemDetail {
 }
 
 export interface Price {
+  fullPrice?: string;
   currency: string;
   amount: number;
   decimals: number;

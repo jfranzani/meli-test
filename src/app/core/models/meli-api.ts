@@ -5,7 +5,10 @@ export interface SearchMeliApi {
 export interface SearchItemMeliApi {
   shipping: {
     free_shipping: boolean;
-  }
+  };
+  address: {
+    state_name: string;
+  };
   accepts_mercadopago: boolean;
   available_quantity: number;
   buying_mode: string;

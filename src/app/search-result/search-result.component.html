@@ -1,8 +1,6 @@
 <div class="container-fluid main-container">
-  <ng-container *ngFor="let item of searchResult.items">
-    Item:
-    <pre>{{  item | json }} </pre>
-    searchResult
+  <ng-container *ngFor="let item of searchResult?.items">
+    <app-search-item [item]="item"></app-search-item>
   </ng-container>
 </div>
  

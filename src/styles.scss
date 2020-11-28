@@ -9,3 +9,11 @@ html body {
   height: 40px;
   width: 40px;
 }
+
+.active-dot {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background-color: $meli-green-active;
+  display: inline-block;
+}
