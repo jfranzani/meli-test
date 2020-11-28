@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { http } from '../core/helpers/request-utilities';
 import { SearchMeliApi } from '../core/models/meli-api';
@@ -7,7 +8,7 @@ import { Author, Item, Price, SearchResult } from '../core/models/search';
   providedIn: 'root',
 })
 export class MeliService {
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   /**
    * This will split the price into amount and decimals and return a Price object
@@ -81,5 +82,9 @@ export class MeliService {
       `https://api.mercadolibre.com/sites/MLA/search?q=${query}#json`
     );
     return this.mapApiSearchResultToItems(res.parsedBody);
+  }
+
+  getTest() {
+    return this.httpClient.get<any>('http://localhost:3000/');
   }
 }
