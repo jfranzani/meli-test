@@ -6,8 +6,10 @@
         $ {{ item.price.fullPrice }}
         <span class="active-dot ml-1" *ngIf="item.free_shipping"></span>
       </h5>
-      <p class="search-item-title">{{ item.title }}</p>
+      <a [routerLink]="['/items', item.id]" class="search-item-title">
+        <p>{{ item.title }}</p></a
+      >
     </div>
   </div>
-  <div class="search-item-card-location">{{ item?.state_name }}</div>
+  <p class="search-item-card-location">{{ item?.state_name }}</p>
 </div>

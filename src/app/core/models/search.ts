@@ -1,6 +1,6 @@
 export interface SearchResult {
   author: Author;
-  categories: string[];
+  categories?: string[];
   items: Item[];
 }
 
