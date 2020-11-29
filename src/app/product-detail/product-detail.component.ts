@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Item, ItemDetail } from '../core/models/search';
+import { MeliService } from '../services/meli.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,14 +9,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  productId: number;
-  constructor(private route: ActivatedRoute) {}
+  productId: string;
+  product: Item;
+  constructor(
+    private route: ActivatedRoute,
+    private meliService: MeliService
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
+    this.route.params.subscribe((params) => {
       this.productId = params['id'];
+      this.getProductDetail(this.productId);
     });
   }
 
-  getProductDetail(id: number) {}
+  getProductDetail(id: string) {
+    this.meliService.getProduct(id).subscribe((res: ItemDetail) => {
+      this.product = res.item;
+      this.product.price.fullPrice = this.meliService.addThousandSeparator(
+        this.product.price.amount
+      );
+    });
+  }
 }

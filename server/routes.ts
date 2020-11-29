@@ -1,6 +1,7 @@
 import {
   Author,
   Item,
+  ItemDetail,
   Price,
   SearchMeliApi,
   SearchResult,
@@ -28,18 +29,30 @@ function getPrice(price: string, currency: string): Price {
     decimals = 0;
   }
 
-  // Parece que para la localización en español muestra recién el separador de miles después de 4 digitos
-  // https://stackoverflow.com/questions/57628055/tolocalestring-not-working-on-numbers-less-than-10000-in-all-browsers
-  const fullPrice = new Intl.NumberFormat('es-AR', {
-    currency,
-    maximumFractionDigits: 2,
-    style: 'decimal',
-  }).format(+price);
   return {
     amount,
     decimals,
     currency,
-    fullPrice,
+  };
+}
+
+function getAuthor(): Author {
+  return {
+    name: 'Jerónimo',
+    lastname: 'Franzani',
+  };
+}
+
+function getItem(apiItem): Item {
+  return {
+    id: apiItem.id,
+    title: apiItem.title,
+    price: getPrice(apiItem.price.toString(), apiItem.currency_id),
+    picture: apiItem.thumbnail,
+    condition: apiItem.condition,
+    free_shipping: apiItem.shipping?.free_shipping || false,
+    state_name: apiItem.address?.state_name || '',
+    sold_quantity: apiItem.sold_quantity || 0,
   };
 }
 
@@ -50,24 +63,9 @@ function getPrice(price: string, currency: string): Price {
 function mapApiSearchResultToItems(
   meliSearchResult: SearchMeliApi
 ): SearchResult {
-  const author: Author = {
-    name: 'Jerónimo',
-    lastname: 'Franzani',
-  };
+  const author = getAuthor();
   let items: Item[] = [];
-
-  items = meliSearchResult.results.map((item) => {
-    return {
-      id: item.id,
-      title: item.title,
-      price: getPrice(item.price.toString(), item.currency_id),
-      picture: item.thumbnail,
-      condition: item.condition,
-      free_shipping: item.shipping.free_shipping,
-      state_name: item.address.state_name,
-    };
-  });
-
+  items = meliSearchResult.results.map(getItem);
   return {
     author,
     categories: [],
@@ -75,11 +73,36 @@ function mapApiSearchResultToItems(
   };
 }
 
+function convertToDetailItem(item): ItemDetail {
+  return {
+    author: getAuthor(),
+    item: getItem(item),
+  };
+}
+
 routes.get('/api/items', async (req, res) => {
-    console.log(req)
   const response = await fetch(
     `https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}`
   );
   const data = await response.json();
   res.send(mapApiSearchResultToItems(data));
+});
+
+routes.get('/api/items/:id', async (req, res) => {
+  try {
+    const itemResponse = await fetch(
+      `https://api.mercadolibre.com/items/${req.params.id}`
+    );
+    const apiItem = await itemResponse.json();
+    let itemDetail: ItemDetail = convertToDetailItem(apiItem);
+
+    const itemDescriptionResponse = await fetch(
+      `https://api.mercadolibre.com/items/${req.params.id}/description`
+    );
+    const apiItemDescription = await itemDescriptionResponse.json();
+    itemDetail.item.description = apiItemDescription.plain_text;
+    res.send(itemDetail);
+  } catch (err) {
+    res.send(err);
+  }
 });

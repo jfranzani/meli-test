@@ -1,0 +1,39 @@
+@import "./../../app/styles/colors.scss";
+
+.main-container {
+  background-color: $meli-white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.detail-picture {
+  height: 500px;
+  width: 500px;
+}
+
+.product-description {
+  color: $meli-grey-text;
+  p {
+    max-width: 800px;
+  }
+}
+
+.buy-section {
+  width: 200px;
+  .small-title {
+  }
+  .regular-title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .small-decimals {
+    margin-top: 4px;
+    margin-left: 1px;
+    font-size: 18px;
+    position: absolute;
+  }
+  button.btn {
+    width: 100%;
+  }
+}
