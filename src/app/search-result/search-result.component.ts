@@ -27,7 +27,7 @@ export class SearchResultComponent implements OnInit {
 
   doSearch() {
     this.meliService.getSearch(this.searchParams).subscribe((res) => {
-      res.items = res.items.slice(0, 4);
+      res.items = res?.items?.slice(0, 4);
       this.searchResult = res;
     });
   }

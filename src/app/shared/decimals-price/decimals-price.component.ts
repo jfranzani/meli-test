@@ -22,8 +22,8 @@ export class DecimalsPriceComponent implements OnInit {
 
   ngOnInit(): void {
     this.amount = this.meliService.addThousandSeparator(this.price?.amount);
-    if (this.price.decimals !== 0) {
-      this.decimals = this.price.decimals.toString().padStart(2, '0');
+    if (this.price?.decimals !== 0) {
+      this.decimals = this.price?.decimals.toString().padStart(2, '0');
     }
   }
 }

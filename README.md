@@ -6,7 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Go into server folder and Run `npm run serve` for  lisetning to an Express  server on  `http://localhost:3000/`.
+Go into server folder and Run `npm run serve` for lisetning to an Express server on `http://localhost:3000/`.
+
+Alternative you can run `npm run serve` on Application's Root to run Both the Application and the server.
 
 ## Code scaffolding
 

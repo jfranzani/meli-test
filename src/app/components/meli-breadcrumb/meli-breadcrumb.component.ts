@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-meli-breadcrumb',
@@ -7,12 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class MeliBreadcrumbComponent implements OnInit {
   @Input() categories: string[] = [];
-  @Output() onCategoryClicked: EventEmitter<string>;
   constructor() {}
 
   ngOnInit(): void {}
-
-  onCategorySelected(categoryName: string) {
-    this.onCategoryClicked.emit(categoryName);
-  }
 }
