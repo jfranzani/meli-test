@@ -4,7 +4,8 @@ import {
   ChangeDetectionStrategy,
   Input,
 } from '@angular/core';
-import { Item } from 'src/app/core/models/search';
+import { Item } from 'src/app/core/models/products';
+import { MeliService } from 'src/app/services/meli.service';
 
 @Component({
   selector: 'app-search-item',
@@ -14,7 +15,11 @@ import { Item } from 'src/app/core/models/search';
 })
 export class SearchItemComponent implements OnInit {
   @Input() item: Item;
-  constructor() {}
+  constructor(private meliService: MeliService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.item.price.fullPrice = this.meliService.addThousandSeparator(
+      this.item.price.amount
+    );
+  }
 }

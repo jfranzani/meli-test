@@ -1,7 +1,9 @@
+@import "./../../../../app/styles/colors.scss";
+
 .search-item-card {
   padding: 20px;
   display: flex;
-  background-color: white;
+  background-color: $meli-white;
   align-items: center;
   justify-content: space-between;
   background-clip: border-box;
