@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Input,
 } from '@angular/core';
-import { Item } from 'src/app/core/models/search';
+import { Item } from 'src/app/core/models/products';
 import { MeliService } from 'src/app/services/meli.service';
 
 @Component({

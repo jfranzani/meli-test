@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Price } from 'server/core/models/models';
-import { SearchResult } from '../core/models/search';
+import { SearchResult } from '../core/models/products';
 
 @Injectable({
   providedIn: 'root',

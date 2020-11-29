@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Item, SearchResult } from '../core/models/search';
+import { Item, SearchResult } from '../core/models/products';
 import { MeliService } from '../services/meli.service';
 
 @Component({

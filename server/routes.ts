@@ -43,13 +43,20 @@ function getAuthor(): Author {
   };
 }
 
+function getReadableCondition(condition: string): string {
+  if (condition === 'new') return 'Nuevo';
+  if (condition === 'used') return 'Usado';
+  if (condition === 'not_specified') return 'Sin Especificar';
+  return condition;
+}
+
 function getItem(apiItem): Item {
   return {
     id: apiItem.id,
     title: apiItem.title,
     price: getPrice(apiItem.price.toString(), apiItem.currency_id),
     picture: apiItem.thumbnail,
-    condition: apiItem.condition,
+    condition: getReadableCondition(apiItem.condition),
     free_shipping: apiItem.shipping?.free_shipping || false,
     state_name: apiItem.address?.state_name || '',
     sold_quantity: apiItem.sold_quantity || 0,
@@ -82,7 +89,9 @@ function convertToDetailItem(item): ItemDetail {
 
 routes.get('/api/items', async (req, res) => {
   const response = await fetch(
-    `https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}`
+    `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(
+      req.query.q
+    )}`
   );
   const data = await response.json();
   res.send(mapApiSearchResultToItems(data));

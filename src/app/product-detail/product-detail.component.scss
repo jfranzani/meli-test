@@ -10,6 +10,7 @@
 .detail-picture {
   height: 500px;
   width: 500px;
+  margin-bottom: 30px;
 }
 
 .product-description {
@@ -20,20 +21,25 @@
 }
 
 .buy-section {
-  width: 200px;
+  width: 250px;
   .small-title {
+    margin-bottom: 2px;
   }
   .regular-title {
     font-size: 20px;
     line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 5px;
   }
+
   .small-decimals {
-    margin-top: 4px;
+    margin-top: 3px;
     margin-left: 1px;
     font-size: 18px;
     position: absolute;
   }
   button.btn {
+    margin-top: 20px;
     width: 100%;
   }
 }
