@@ -32,3 +32,8 @@ export interface Author {
   name: string;
   lastname: string;
 }
+
+export enum PriceSize {
+  small = 0,
+  big = 1,
+}

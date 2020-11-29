@@ -2,10 +2,12 @@
   <div class="search-item-card-img">
     <img src="{{ item.picture }}" class="search-picture" />
     <div class="search-item-card-description">
-      <h5>
-        $ {{ item.price.fullPrice }}
-        <span class="active-dot ml-1" *ngIf="item.free_shipping"></span>
-      </h5>
+      <app-decimals-price
+
+        [price]="item.price"
+      ></app-decimals-price>
+      <span class="active-dot ml-4" *ngIf="item.free_shipping"></span>
+
       <a [routerLink]="['/items', item.id]" class="search-item-title">
         <p>{{ item.title }}</p></a
       >

@@ -1,0 +1,20 @@
+.decimals {
+  margin-top: 3px;
+  margin-left: 1px;
+  font-size: 14px;
+  position: absolute;
+  &-big {
+    margin-top: 6px;
+    font-size: 15px;
+  }
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 2px;
+  &-big {
+    font-size: 26px;
+  }
+}

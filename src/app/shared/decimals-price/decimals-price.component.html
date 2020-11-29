@@ -1,0 +1,6 @@
+<p class="price" [ngClass]="{ 'price-big': size === 1 }">
+  $ {{ amount }}
+  <span class="decimals" [ngClass]="{ 'decimals-big': size === 1 }">{{
+    decimals
+  }}</span>
+</p>

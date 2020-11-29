@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DecimalsPriceComponent } from './decimals-price/decimals-price.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [DecimalsPriceComponent],
   imports: [CommonModule],
-  exports: [],
+  exports: [DecimalsPriceComponent],
 })
 export class SharedModule {}
