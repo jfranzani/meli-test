@@ -14,6 +14,7 @@ export interface Item {
   state_name: string;
   sold_quantity?: number;
   description?: string;
+  category_id?: string;
 }
 
 export interface ItemDetail {

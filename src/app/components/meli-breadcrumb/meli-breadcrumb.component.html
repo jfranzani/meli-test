@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <ng-container *ngFor="let category of categories; last as isLast">
+      <li class="breadcrumb-item" *ngIf="!isLast">
+        <a
+          [routerLink]="['/items']"
+          class="active"
+          routerLinkActive="active"
+          [queryParams]="{ search: category }"
+          >{{ category }}</a
+        >
+      </li>
+      <li class="breadcrumb-item active" *ngIf="isLast">{{ category }}</li>
+    </ng-container>
+  </ol>
+</nav>

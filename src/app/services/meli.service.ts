@@ -41,4 +41,10 @@ export class MeliService {
   getProduct(id: string) {
     return this.httpClient.get<any>(`http://localhost:3000/api/items/${id}`);
   }
+
+  getCategoriesByCategoryId(categoryId: string) {
+    return this.httpClient.get<any>(
+      `http://localhost:3000/api/${categoryId}/categories`
+    );
+  }
 }

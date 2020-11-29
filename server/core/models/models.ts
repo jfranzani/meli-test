@@ -1,5 +1,11 @@
 export interface SearchMeliApi {
   results: SearchItemMeliApi[];
+  filters: [
+    {
+      id: string;
+      values: Categories[];
+    }
+  ];
 }
 
 export interface SearchItemMeliApi {
@@ -21,8 +27,14 @@ export interface SearchItemMeliApi {
   permalink: string;
   price: number;
   sold_quantity: number;
-  thumbnail: 'http://http2.mlstatic.com/D_766961-MLA43346235243_092020-I.jpg';
-  title: 'Nuevo Peugeot 208 1.6 Feline Tiptronic';
+  thumbnail: string;
+  title: string;
+}
+
+export interface Categories {
+  id: string;
+  name: string;
+  path_from_root: IdName[];
 }
 
 export interface SearchResult {
@@ -41,6 +53,7 @@ export interface Item {
   state_name: string;
   sold_quantity?: number;
   description?: string;
+  category_id?: string;
 }
 
 export interface ItemDetail {
@@ -58,4 +71,9 @@ export interface Price {
 export interface Author {
   name: string;
   lastname: string;
+}
+
+export interface IdName {
+  id: string;
+  name: string;
 }

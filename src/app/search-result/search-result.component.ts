@@ -19,8 +19,10 @@ export class SearchResultComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchParams = this.route.snapshot?.queryParamMap?.get('search') || '';
-    this.doSearch();
+    this.route.queryParams.subscribe((params) => {
+      this.searchParams = params.search || '';
+      this.doSearch();
+    });
   }
 
   doSearch() {

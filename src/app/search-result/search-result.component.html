@@ -1,6 +1,9 @@
 <div class="container-fluid main-container">
+  <app-meli-breadcrumb
+    *ngIf="searchResult?.categories"
+    [categories]="searchResult.categories"
+  ></app-meli-breadcrumb>
   <ng-container *ngFor="let item of searchResult?.items">
     <app-search-item [item]="item"></app-search-item>
   </ng-container>
 </div>
- 

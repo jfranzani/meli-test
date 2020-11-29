@@ -13,14 +13,8 @@ export class SearchBoxComponent implements OnInit {
   ngOnInit(): void {}
 
   navigateToDetailsList(searchTerm: string) {
-    this.router
-      .navigateByUrl('/', {
-        skipLocationChange: true,
-      })
-      .then(() =>
-        this.router.navigate(['/items'], {
-          queryParams: { search: searchTerm },
-        })
-      );
+    this.router.navigate(['/items'], {
+      queryParams: { search: searchTerm },
+    });
   }
 }

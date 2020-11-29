@@ -1,19 +1,22 @@
 <div class="container-fluid main-container">
-  <div class="product-description">
-    <img src="{{ product?.picture }}" class="detail-picture" />
-    <h4>Descripción del producto</h4>
-    <p>{{ product?.description }}</p>
-  </div>
-  <div class="buy-section">
-    <p class="small-title">
-      {{ product?.condition }} - {{ product?.sold_quantity }} vendidos
-    </p>
-    <p class="regular-title">{{ product?.title }}</p>
-    <app-decimals-price
-      *ngIf="product?.price"
-      [price]="product.price"
-      [size]="1"
-    ></app-decimals-price>
-    <button class="btn btn-primary">Comprar</button>
+  <app-meli-breadcrumb [categories]="categories"></app-meli-breadcrumb>
+  <div class="detail-item-container">
+    <div class="product-description">
+      <img src="{{ product?.picture }}" class="detail-picture" />
+      <h4>Descripción del producto</h4>
+      <p>{{ product?.description }}</p>
+    </div>
+    <div class="buy-section">
+      <p class="small-title">
+        {{ product?.condition }} - {{ product?.sold_quantity }} vendidos
+      </p>
+      <p class="regular-title">{{ product?.title }}</p>
+      <app-decimals-price
+        *ngIf="product?.price"
+        [price]="product.price"
+        [size]="1"
+      ></app-decimals-price>
+      <button class="btn btn-primary">Comprar</button>
+    </div>
   </div>
 </div>

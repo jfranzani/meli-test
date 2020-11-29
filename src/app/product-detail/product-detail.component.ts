@@ -11,6 +11,7 @@ import { MeliService } from '../services/meli.service';
 export class ProductDetailComponent implements OnInit {
   productId: string;
   product: Item;
+  categories: string[] = [];
   constructor(
     private route: ActivatedRoute,
     private meliService: MeliService
@@ -29,6 +30,11 @@ export class ProductDetailComponent implements OnInit {
       this.product.price.fullPrice = this.meliService.addThousandSeparator(
         this.product.price.amount
       );
+      this.meliService
+        .getCategoriesByCategoryId(res.item.category_id)
+        .subscribe((categories) => {
+          this.categories = categories.map((category) => category.name);
+        });
     });
   }
 }

@@ -3,6 +3,7 @@ import {
   Item,
   ItemDetail,
   Price,
+  SearchItemMeliApi,
   SearchMeliApi,
   SearchResult,
 } from './core/models/models';
@@ -50,7 +51,7 @@ function getReadableCondition(condition: string): string {
   return condition;
 }
 
-function getItem(apiItem): Item {
+function getItem(apiItem: SearchItemMeliApi): Item {
   return {
     id: apiItem.id,
     title: apiItem.title,
@@ -60,6 +61,7 @@ function getItem(apiItem): Item {
     free_shipping: apiItem.shipping?.free_shipping || false,
     state_name: apiItem.address?.state_name || '',
     sold_quantity: apiItem.sold_quantity || 0,
+    category_id: apiItem.category_id || '',
   };
 }
 
@@ -75,16 +77,31 @@ function mapApiSearchResultToItems(
   items = meliSearchResult.results.map(getItem);
   return {
     author,
-    categories: [],
+    categories: getCategories(meliSearchResult),
     items,
   };
 }
 
-function convertToDetailItem(item): ItemDetail {
+function convertToDetailItem(item: SearchItemMeliApi): ItemDetail {
   return {
     author: getAuthor(),
     item: getItem(item),
   };
+}
+
+function getCategories(searchResult: SearchMeliApi): string[] {
+  let categories: string[] = [];
+  const categoryFilter = searchResult.filters.find(
+    (filter) => filter.id === 'category'
+  );
+  const currentCategory = categoryFilter?.values[0];
+
+  if (currentCategory) {
+    for (let category of currentCategory.path_from_root) {
+      categories.push(category.name);
+    }
+  }
+  return categories;
 }
 
 routes.get('/api/items', async (req, res) => {
@@ -95,6 +112,14 @@ routes.get('/api/items', async (req, res) => {
   );
   const data = await response.json();
   res.send(mapApiSearchResultToItems(data));
+});
+
+routes.get('/api/:categoryId/categories', async (req, res) => {
+  const response = await fetch(
+    `https://api.mercadolibre.com/categories/${req.params.categoryId}`
+  );
+  const data = await response.json();
+  res.send(data.path_from_root);
 });
 
 routes.get('/api/items/:id', async (req, res) => {

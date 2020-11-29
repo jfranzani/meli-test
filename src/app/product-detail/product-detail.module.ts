@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductDetailRoutingModule } from './product-detail-routing.module';
 import { ProductDetailComponent } from './product-detail.component';
 import { SharedModule } from '../shared/shared.module';
+import { MeliBreadcrumbModule } from '../components/meli-breadcrumb/meli-breadcrumb.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ProductDetailRoutingModule,
+    MeliBreadcrumbModule,
     SharedModule
   ]
 })
